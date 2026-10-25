@@ -71,6 +71,13 @@ def _():
     # CELL 3/4: بررسی نسخه‌ها + import کتابخانه‌ها
     # نکته‌ی marimo: هر نام سراسری فقط در یک سلول تعریف می‌شود؛ پس همه‌ی importها اینجا جمع شده‌اند.
     import os
+    # molab: TensorFlow/Keras 3 نصب است و transformers سعی می‌کند آن را import کند → خطای tf-keras.
+    # این نوتبوک فقط PyTorch لازم دارد؛ پس TF/Flax را قبل از import transformers خاموش می‌کنیم.
+    os.environ["USE_TF"] = "0"
+    os.environ["USE_FLAX"] = "0"
+    os.environ["USE_TORCH"] = "1"
+    os.environ["TRANSFORMERS_NO_TF"] = "1"
+    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
     import sys
     import json
     import glob
